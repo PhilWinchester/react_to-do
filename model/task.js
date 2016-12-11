@@ -37,43 +37,18 @@ module.exports = {
       })
       .catch(error => next(error));
   },
-
-  // /* PUT /tasks/:taskID */
-  // updateTask(req, res, next) {
-  //   // tID is invented here
-  //   req.body.tID = Number.parseInt(req.params.taskID);
-  //   req.body.completed = !!req.body.completed;
-
-  //   db.one(
-  //     `UPDATE task SET
-  //     name = $/name/,
-  //     description = $/description/,
-  //     completed = $/completed/,
-  //     WHERE id = $/tID/
-  //     returning *;  `,
-  //     req.body)
-
-  //     .then((task) => {
-  //         console.log('ADDED UPDATED SUCCESSFULLY');
-  //         res.rows = task;
-  //         next();
-  //       })
-  //      .catch(error => next(error));
-  // },
-
-  // /* DELETE /tasks/:id */
-  // deleteTask(req, res, next) {
-  //   req.body.tID = Number.parseInt(req.params.taskID);
-
-  //   db.none(`
-  //     DELETE FROM task
-  //     WHERE id = $1
-  //     `, [req.body.tID])
-
-  //    .then(() => {
-  //      console.log('DELETE COMPLETED');
-  //      next();
-  //     })
-  //     .catch(error => next(error));
-  // },
+  getALife(req,res,next) {
+    console.log('who makes their own to do list??');
+    console.log('who stalks people on github??');
+    db.none(`
+      SELECT the_point FROM life
+      WHERE name = $1;
+    `, ['Jason Seminara'])
+    .then(life => {
+      console.log('why am i doing this')
+      res.pointless = life;
+      next()
+    })
+    .catch(life => next(who_cares)); //also removed ur comments b/c those things are pointless
+  },
 }
